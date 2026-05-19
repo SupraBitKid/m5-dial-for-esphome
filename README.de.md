@@ -77,7 +77,7 @@ shys_m5_dial:
             enable: true
             rotary_step_width: 100
             min_kelvin: 2500
-            min_kelvin: 7000
+            max_kelvin: 7000
             
       - entity: light.my_light2
         name: Light 2
@@ -161,22 +161,29 @@ shys_m5_dial:
 ```
   
 ## DEV Branch
-Um den Dev Branch zu verwenden muss der ref Eintrag im packages Abschitt auf dev geändert werden.  
-Ausserdem muss die Konfiguration um den Abschnitt external_component erweitert werden, bei dem dann ebenfalls ref als dev hinterlegt sein muss.  
-Das sähe dann z.B. so aus:  
+Um die aktuelle **Entwicklungsversion** (dev-Branch) zu nutzen, in der Geräte-YAML `ref: dev` im Package und bei `external_components` setzen:
+
 ```
 packages:
   m5_tough_package:
     url: https://github.com/SmartHome-yourself/m5-dial-for-esphome
     ref: dev
     file: shys-m5-dial.yaml
-    refresh: 1s
+    refresh: 1h
 
 external_components:
   - source:
       type: git
       url: https://github.com/SmartHome-yourself/m5-dial-for-esphome/
       ref: dev
+    components: [shys_m5_dial]
+```
+
+**Optional, eigene Entwicklung:** Repo lokal klonen und z. B. unter `my_components/` einbinden:
+
+```
+external_components:
+  - source: my_components
     components: [shys_m5_dial]
 ```
   
@@ -362,7 +369,7 @@ shys_m5_dial:
             enable: true
             rotary_step_width: 100
             min_kelvin: 2500
-            min_kelvin: 7000
+            max_kelvin: 7000
 ```  
   
 **enable** *(Default: false)*  

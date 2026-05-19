@@ -18,7 +18,7 @@ Currently supported entities are:
 - media_player  
 - number  
 - switch  
-- timer   
+- timer  
   
 ## Video
 [![M5 Stack Dial](http://img.youtube.com/vi/4dE7YONEYVk/0.jpg)](https://www.youtube.com/watch?v=4dE7YONEYVk "M5 Dial as Home Assistant Remote Control")
@@ -161,22 +161,29 @@ shys_m5_dial:
 ```
   
 ## DEV Branch
-To use the Dev Branch, the ref entry in the packages section must be changed to dev.  
-Additionally, the configuration must be expanded to include the external_component section, where ref must also be set as dev.  
-This would look like this, for example:  
+To use the current **development version** (dev branch), set `ref: dev` in your device YAML in both `packages` and `external_components`:
+
 ```
 packages:
   m5_tough_package:
     url: https://github.com/SmartHome-yourself/m5-dial-for-esphome
     ref: dev
     file: shys-m5-dial.yaml
-    refresh: 1s
+    refresh: 1h
 
 external_components:
   - source:
       type: git
       url: https://github.com/SmartHome-yourself/m5-dial-for-esphome/
       ref: dev
+    components: [shys_m5_dial]
+```
+
+**Optional, own development:** Clone the repo locally and e.g. link it under `my_components/`:
+
+```
+external_components:
+  - source: my_components
     components: [shys_m5_dial]
 ```
   
@@ -223,6 +230,7 @@ shys_m5_dial:
   longPressDuration: 1200
   font: default
   font_factor: 1  
+  display_rotate: 2
 ```
   
 **name**  
@@ -255,6 +263,10 @@ However, the alternative fonts do not support umlauts and special characters!
 **font_factor (optional)** *(Default: 1)*  
 Specifies the factor to be applied to the font size.  
 *Valid values: 0.1 - 10.0*
+  
+**display_rotate (optional)** *(Default: 0)*  
+Specifies how often the display is rotated by 90°.  
+*Valid values: 0-3*
   
 &nbsp;  
   
@@ -948,5 +960,4 @@ Specifies the entity ID for which the operation via the Dial should be unlocked.
 ------  
     
 &nbsp;
-  
   
