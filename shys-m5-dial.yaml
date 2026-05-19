@@ -18,11 +18,6 @@ esphome:
       - m5stack/M5Unified@0.2.14
       - m5stack/M5Dial@1.0.3
       - m5stack/M5GFX@0.2.20
-    build_flags:
-      # M5GFX (Bus_EPD) expects esp-idf LCD headers to be in include path.
-      - -I/data/cache/platformio/packages/framework-espidf/components/esp_lcd/include
-
-
 
 external_components:
   - source:
@@ -39,6 +34,9 @@ esp32:
   board: esp32-s3-devkitc-1
   framework:
     type: arduino
+    advanced:
+      include_builtin_idf_components:
+        - esp_lcd
   flash_size: 8MB
 
 logger:
@@ -61,11 +59,11 @@ api:
 ota:
   platform: esphome
 
-#improv_serial:
-#captive_portal:
-
 wifi:
   ssid: ${wifi_ssid}
   password: ${wifi_password}
   ap:
     password: "12345678"
+
+#improv_serial:
+captive_portal:

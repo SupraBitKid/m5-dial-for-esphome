@@ -296,6 +296,14 @@ CONFIG_SCHEMA = cv.Schema({
 
 
 async def to_code(config):
+    try:
+        from esphome.components.esp32 import include_builtin_idf_component
+
+        # M5GFX@0.2.20 (Bus_EPD) needs esp_lcd; required for ESPHome 2026.2+ (see shys-m5-dial.yaml).
+        include_builtin_idf_component("esp_lcd")
+    except ImportError:
+        pass
+
     var = cg.new_Pvariable(config[CONF_ID])
     await cg.register_component(var, config)
 
