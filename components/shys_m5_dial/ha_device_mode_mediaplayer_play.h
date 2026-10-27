@@ -26,7 +26,7 @@ namespace esphome
 
                     if(strcmp(this->player_state.c_str(), "playing")==0){
                         if(this->media_duration > 0 && this->media_position <= this->media_duration){
-                            this->media_position/this->media_duration*100;
+                            this->media_position/=this->media_duration*100;
                         }
                     }
 

@@ -215,7 +215,7 @@ namespace esphome
                     uint16_t degree = display.getDegByCoord(x, y);
                     float tmp = map(degree, 0, 360, this->minValue, this->maxValue);
                     setValue(tmp);
-                    ESP_LOGD("TOUCH", "Neuen Weiß-Wert auf %d gesetzt", tmp);
+                    ESP_LOGD("TOUCH", "Neuen Weiß-Wert auf %f gesetzt", tmp);
                     
                     return true;                }
 
